@@ -2,9 +2,9 @@ const mysql = require('mysql')
 
 const pool = mysql.createPool({
     host:'localhost',
-    user:'',
-    password:'',
-    database:'',
+    user:'root',
+    password:'*Ankush*',
+    database:'mydb',
     
 })
 
@@ -38,7 +38,7 @@ exports.getOne = function(req,res){
 
 }
 
-exports.post=function(req,res){
+exports.postOne=function(req,res){
    
     pool.getConnection((err,conn)=>{
         if(err) throw err;
@@ -51,6 +51,18 @@ exports.post=function(req,res){
             if(err) res.send({success:false,msg:err})
             res.send(result)
         })
+    })
+}
+
+exports.removeOne = function(req,res){
+    pool.getConnection((err,conn)=>{
+        if(err) throw err;
+        let query = `DELETE FROM mytask WHERE tag='${req.params.tag}'`
+        conn.query(query,(err,result)=>{
+            if(err) res.send({success:false,msg:err})
+            res.json(result)
+        })
+
     })
 }
 

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getAllTasks,getOneTask,post} = require('../controllers/taskhandler')
+const {getAllTasks,getOneTask,postTask,removeTask} = require('../controllers/taskhandler')
 
 //routes
 
@@ -11,9 +11,9 @@ router.get('/task',getAllTasks)
 router.get('/task/:tag',getOneTask)
 
 //post 
-router.post('/task',post)
+router.post('/task',postTask)
 
-
+router.delete('/task/:tag',removeTask)
 
 
 //exports
