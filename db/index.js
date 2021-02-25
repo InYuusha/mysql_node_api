@@ -66,4 +66,18 @@ exports.removeOne = function(req,res){
     })
 }
 
+exports.updateOne=function(req,res){
+    pool.getConnection((err,conn)=>{
+        if(err) throw err;
+        let oldTag = req.params.tag
+        let newTask = req.body.task;
+        let newTag = req.body.tag;
+        let query =`UPDATE mytask SET task='${newTask}',tag='${newTag}' WHERE tag='${oldTag}'`
+        conn.query(query,(err,result)=>{
+            if(err) res.send({success:false,msg:err})
+            res.json(result)
+        })
+    })
+}
+
 

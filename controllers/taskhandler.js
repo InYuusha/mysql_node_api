@@ -1,4 +1,4 @@
-const {getAll,getOne, postOne, removeOne} = require('../db/index.js')
+const {getAll,getOne, postOne, removeOne,updateOne} = require('../db/index.js')
 
 //all task
 exports.getAllTasks = async function(req,res){
@@ -20,4 +20,9 @@ exports.postTask = function(req,res){
 //remove a task
 exports.removeTask=function(req,res){
     removeOne(req,res)
+}
+
+//update a task
+exports.updateTask=function(req,res){
+    updateOne(req,res)
 }
